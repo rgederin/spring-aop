@@ -7,13 +7,23 @@ import org.aspectj.lang.annotation.Pointcut;
 @Aspect
 public class LoggingAspect {
 	
+	@Pointcut("within(v3.spring.aop.pointcuts.TriangleModel)")
+	public void allTriangleModelMethods(){}
+	
+	//@Pointcut(args("v3.spring.aop.pointcuts.Triangle"))
+	
+	@Before("allTriangleModelMethods())")
+	public void allTriangleModelAdvice(){
+		System.out.println("advice run: allTriangleModelAdvice() ");
+	}
+	
 	@Pointcut("execution(public String getName())")
 	public void allGetters(){
 		//dummy method - holds point cut expression
 	}
 	
 	//@Before("execution(public String getName())")
-	@Before("allGetters()")
+	@Before("allGetters() || allTriangleModelMethods()")
 	public void loggingFirstAdvice() {
 		System.out
 				.println("advice run (first): method public String getName() was called");
