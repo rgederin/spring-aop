@@ -7,19 +7,21 @@ import org.aspectj.lang.annotation.Pointcut;
 
 @Aspect
 public class LoggingAspect {
-	
+
 	@Pointcut("within(v4.spring.aop.joinpoints.CircleModel)")
-	public void allCircleModelMethods(){}
-	
-	@Pointcut("execution(* get*())")
-	public void allGetters(){
-		//dummy method - holds point cut expression
+	public void allCircleModelMethods() {
+	}
+
+	@Before("args(name)")
+	public void allSingleStringArgsAdvice(String name){
+		System.out.println("A method that takes String arg has been called. Input string: " + name);
+		System.out.println();
 	}
 	
 	@Before("allCircleModelMethods()")
 	public void loggingAdvice(JoinPoint joinPoint) {
-		System.out
-				.println("advice run: loggingAdvice()");
+		System.out.println("To string: " + joinPoint.toString());
+		System.out.println("Get Target: " + joinPoint.getTarget());
+		System.out.println();
 	}
-
 }

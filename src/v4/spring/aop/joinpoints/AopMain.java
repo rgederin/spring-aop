@@ -9,7 +9,8 @@ public class AopMain {
 		ApplicationContext context = new ClassPathXmlApplicationContext("v4.spring.aop.joinpoints.xml");
 		ShapeService shapeService = context.getBean("shapeService", ShapeService.class);
 		shapeService.getCircle().getName();
-		shapeService.getCircle().setName("name");
+		shapeService.getCircle().setName("new circle");
+		
 		//shapeService.getTriangle().getName();
 	
 	}
